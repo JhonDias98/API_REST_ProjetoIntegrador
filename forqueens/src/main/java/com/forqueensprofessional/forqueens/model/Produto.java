@@ -1,0 +1,98 @@
+package com.forqueensprofessional.forqueens.model;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+@Entity
+@Table(name = "produto")
+public class Produto {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long codigoProduto;
+	
+	@NotNull
+	@Size(min = 5, max = 50)
+	private String nomeProduto;
+	
+	@NotNull
+	@Size(min = 5, max = 200)
+	private String urlImage;
+	
+	@NotNull
+	@Size(min = 5, max = 500)
+	private String descricao;
+	
+	@NotNull
+	@Size(min = 5, max = 500)
+	private String categoria;
+	
+	@NotNull
+	private int valor;
+	
+	@NotNull
+	private int qtdEstoque;
+	
+	
+	public long getCodigoProduto() {
+		return codigoProduto;
+	}
+
+	public void setCodigoProduto(long codigoProduto) {
+		this.codigoProduto = codigoProduto;
+	}
+
+	public String getNomeProduto() {
+		return nomeProduto;
+	}
+
+	public void setNomeProduto(String nomeProduto) {
+		this.nomeProduto = nomeProduto;
+	}
+
+	public String getUrlImage() {
+		return urlImage;
+	}
+
+	public void setUrlImage(String urlImage) {
+		this.urlImage = urlImage;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
+	public int getValor() {
+		return valor;
+	}
+
+	public void setValor(int valor) {
+		this.valor = valor;
+	}
+
+	public int getQtdEstoque() {
+		return qtdEstoque;
+	}
+
+	public void setQtdEstoque(int qtdEstoque) {
+		this.qtdEstoque = qtdEstoque;
+	}
+		
+}
