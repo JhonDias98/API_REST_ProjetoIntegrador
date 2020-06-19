@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "compra")
+@Table(name = "Compra")
 public class Compra {
 	
 	@Id
@@ -29,7 +29,7 @@ public class Compra {
 	private Date dataCompra = new java.sql.Date(System.currentTimeMillis());
 	
 	@NotNull
-	private int valor;
+	private double valor;
 	
 	@NotNull
 	private int qtdProduto;
@@ -39,12 +39,12 @@ public class Compra {
 	private Produto produto;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="codigoCnpj", referencedColumnName= "cd_cnpj")
+	@JoinColumn(name="codigoCnpj", referencedColumnName= "cnpj")
 	private Empresa empresa;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="codigoCpf", referencedColumnName= "cd_cpf")
-	private Pessoa pessoa;
+	@JoinColumn(name="codigoCpf", referencedColumnName= "cpf")
+	private Usuario usuario;
 
 	public long getCodigoCompra() {
 		return codigoCompra;
@@ -70,11 +70,11 @@ public class Compra {
 		this.dataCompra = dataCompra;
 	}
 
-	public int getValor() {
+	public double getValor() {
 		return valor;
 	}
 
-	public void setValor(int valor) {
+	public void setValor(double valor) {
 		this.valor = valor;
 	}
 
@@ -102,12 +102,14 @@ public class Compra {
 		this.empresa = empresa;
 	}
 
-	public Pessoa getPessoa() {
-		return pessoa;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setPessoa(Pessoa pessoa) {
-		this.pessoa = pessoa;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
+
+	
 	
 }

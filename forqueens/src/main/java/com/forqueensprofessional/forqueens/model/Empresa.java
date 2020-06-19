@@ -1,106 +1,126 @@
 package com.forqueensprofessional.forqueens.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
-@Table(name = "empresa")
+@Table(name = "Empresa")
 public class Empresa {
 	
 	@Id
-	private long cd_cnpj;
-	
-	@NotNull
-	@Size(min = 5, max = 80)
-	private String nm_comprador;
+	@Column(unique = true)
+	private long cnpj;
 	
 	@NotNull
 	@Size(min = 7, max = 80)
-	private String nm_email;
-	
-	@NotNull
-	@Size(min = 5, max = 80)
-	private String comercial;
-	
-	@NotNull
-	@Size(min = 6, max = 30)
-	private String nm_senha;
-	
-	@NotNull
-	private long nm_inscricao_estadual;
+	private String email;
 	
 	@NotNull
 	@Size(min = 5, max = 120)
-	private String nm_razao_social;
+	private String razaoSocial;
+	
+	@NotNull
+	@Size(min = 5, max = 80)
+	private String nomeComercial;
+	
+	@NotNull
+	private long inscricaoEstadual;
 	
 	@Size(min = 10, max = 11)
-	private String nm_telefone_comercial;
+	private String telefoneComercial;
 
-	public long getCd_cnpj() {
-		return cd_cnpj;
+	@NotNull
+	@Size(min = 5, max = 80)
+	private String nomeComprador;
+	
+	@NotNull
+	@Size(min = 6, max = 30)
+	private String senha;
+	
+	@OneToMany(mappedBy = "empresa",cascade=CascadeType.ALL)
+	@JsonIgnoreProperties("empresa")
+	private List<Endereco> endereco;
+
+	public long getCnpj() {
+		return cnpj;
 	}
 
-	public void setCd_cnpj(long cd_cnpj) {
-		this.cd_cnpj = cd_cnpj;
+	public void setCnpj(long cnpj) {
+		this.cnpj = cnpj;
 	}
 
-	public String getNm_comprador() {
-		return nm_comprador;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setNm_comprador(String nm_comprador) {
-		this.nm_comprador = nm_comprador;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public String getNm_email() {
-		return nm_email;
+	public String getRazaoSocial() {
+		return razaoSocial;
 	}
 
-	public void setNm_email(String nm_email) {
-		this.nm_email = nm_email;
+	public void setRazaoSocial(String razaoSocial) {
+		this.razaoSocial = razaoSocial;
 	}
 
-	public String getComercial() {
-		return comercial;
+	public String getNomeComercial() {
+		return nomeComercial;
 	}
 
-	public void setComercial(String comercial) {
-		this.comercial = comercial;
+	public void setNomeComercial(String nomeComercial) {
+		this.nomeComercial = nomeComercial;
 	}
 
-	public String getNm_senha() {
-		return nm_senha;
+	public long getInscricaoEstadual() {
+		return inscricaoEstadual;
 	}
 
-	public void setNm_senha(String nm_senha) {
-		this.nm_senha = nm_senha;
+	public void setInscricaoEstadual(long inscricaoEstadual) {
+		this.inscricaoEstadual = inscricaoEstadual;
 	}
 
-	public long getNm_inscricao_estadual() {
-		return nm_inscricao_estadual;
+	public String getTelefoneComercial() {
+		return telefoneComercial;
 	}
 
-	public void setNm_inscricao_estadual(long nm_inscricao_estadual) {
-		this.nm_inscricao_estadual = nm_inscricao_estadual;
+	public void setTelefoneComercial(String telefoneComercial) {
+		this.telefoneComercial = telefoneComercial;
 	}
 
-	public String getNm_razao_social() {
-		return nm_razao_social;
+	public String getNomeComprador() {
+		return nomeComprador;
 	}
 
-	public void setNm_razao_social(String nm_razao_social) {
-		this.nm_razao_social = nm_razao_social;
+	public void setNomeComprador(String nomeComprador) {
+		this.nomeComprador = nomeComprador;
 	}
 
-	public String getNm_telefone_comercial() {
-		return nm_telefone_comercial;
+	public String getSenha() {
+		return senha;
 	}
 
-	public void setNm_telefone_comercial(String nm_telefone_comercial) {
-		this.nm_telefone_comercial = nm_telefone_comercial;
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public List<Endereco> getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(List<Endereco> endereco) {
+		this.endereco = endereco;
 	}
 	
 	

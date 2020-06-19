@@ -32,15 +32,15 @@ public class EmpresaController {
 	}
 	
 	@GetMapping("/{cd_cnpj}")
-	public ResponseEntity<Empresa> GetByCnpj(@PathVariable long cd_cnpj ){
-		return repository.findById(cd_cnpj)
+	public ResponseEntity<Empresa> GetByCnpj(@PathVariable long cnpj ){
+		return repository.findById(cnpj)
 				.map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
 	@GetMapping("/nomecomercial/{comercial}")
-	public ResponseEntity<List<Empresa>> GetByNome(@PathVariable String comercial){
-		return ResponseEntity.ok(repository.findAllByComercialContainingIgnoreCase(comercial));
+	public ResponseEntity<List<Empresa>> GetByNome(@PathVariable String nomeComercial){
+		return ResponseEntity.ok(repository.findAllBynomeComercialContainingIgnoreCase(nomeComercial));
 	}
 	
 	@PostMapping

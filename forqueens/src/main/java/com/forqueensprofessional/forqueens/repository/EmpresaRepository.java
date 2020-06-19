@@ -9,5 +9,5 @@ import com.forqueensprofessional.forqueens.model.Empresa;
 
 @Repository
 public interface EmpresaRepository extends JpaRepository<Empresa, Long>{
-	public List<Empresa>findAllByComercialContainingIgnoreCase(String comercial);
+	public List<Empresa>findAllBynomeComercialContainingIgnoreCase(String nomeComercial);
 }
