@@ -31,16 +31,11 @@ public class CompraController {
 		return ResponseEntity.ok(repository.findAll());
 	}
 	
-	@GetMapping("/{id}")
-	public ResponseEntity<Compra> getById(@PathVariable long id ){
-		return repository.findById(id)
+	@GetMapping("/{codigoCompra}")
+	public ResponseEntity<Compra> getById(@PathVariable long codigoCompra ){
+		return repository.findById(codigoCompra)
 				.map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.notFound().build());
-	}
-	
-	@GetMapping("/{codigoCompra}")
-	public ResponseEntity<List<Compra>> getByTitulo(@PathVariable long codigoCompra){
-		return ResponseEntity.ok(repository.findAllByCodigoCompra(codigoCompra));
 	}
 	
 	@PostMapping
