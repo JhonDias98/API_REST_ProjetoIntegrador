@@ -23,7 +23,7 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@NotNull
+	
 	@Column(unique = true)
 	private long cpf;
 	
@@ -38,7 +38,7 @@ public class Usuario {
 	@Size(min = 10, max = 12)
 	private String celular;
 	
-	@NotNull
+	
 	private String dataNascimento;
 	
 	@NotNull

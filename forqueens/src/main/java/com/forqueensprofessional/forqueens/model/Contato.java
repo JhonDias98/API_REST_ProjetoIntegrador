@@ -25,7 +25,7 @@ public class Contato {
 	private String email;
 	
 	@NotNull
-	@Size(min = 10, max = 12)
+	@Size(min = 10, max = 15)
 	private String telefone;
 	
 	@NotNull
@@ -33,7 +33,7 @@ public class Contato {
 	private String assunto;
 	
 	@NotNull
-	private String mensagem;
+	private String mensagem; 
 
 	public long getId() {
 		return id;
