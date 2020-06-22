@@ -10,9 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.persistence.ForeignKey;
@@ -46,8 +47,12 @@ public class Pedido {
 	@JoinColumn(foreignKey = @ForeignKey(name = "empresa_fk"))
 	private Empresa empresa;
 	
-	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
-	private List<ItemPedido> itemPedido = new ArrayList<ItemPedido>();
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinColumn(foreignKey = @ForeignKey(name = "produto_fk"))
+	private List<Produto> produtos = new ArrayList<Produto>();
+
+    @Transient
+	private List<Long> prods = new ArrayList<Long>();
 
 	public long getCodigoPedido() {
 		return codigoPedido;
@@ -105,36 +110,19 @@ public class Pedido {
 		this.empresa = empresa;
 	}
 
-	public List<ItemPedido> getItemPedido() {
-		return itemPedido;
+	public List<Produto> getProdutos() {
+		return produtos;
 	}
 
-	public void setItemPedido(List<ItemPedido> itemPedido) {
-		this.itemPedido = itemPedido;
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (codigoPedido ^ (codigoPedido >>> 32));
-		return result;
+	public List<Long> getProds() {
+		return prods;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Pedido other = (Pedido) obj;
-		if (codigoPedido != other.codigoPedido)
-			return false;
-		return true;
+	public void setProds(List<Long> prods) {
+		this.prods = prods;
 	}
-
-	
-	
 }

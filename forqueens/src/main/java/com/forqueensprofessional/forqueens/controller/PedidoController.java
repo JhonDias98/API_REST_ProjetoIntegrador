@@ -1,16 +1,55 @@
 package com.forqueensprofessional.forqueens.controller;
 
+import com.forqueensprofessional.forqueens.model.Pedido;
+import com.forqueensprofessional.forqueens.repository.PedidoRepository;
+import com.forqueensprofessional.forqueens.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Iterator;
 
 @RestController
-@RequestMapping("/pedido")
+@RequestMapping("/pedidos")
 @CrossOrigin("*")
 public class PedidoController {
 
+
 	@Autowired
-	private ItemPedidoController itemPedidoController;
-	
+	private PedidoRepository repository;
+    @Autowired
+    private ProdutoRepository repositoryProd;
+    
+    @GetMapping("/{id}")
+    public ResponseEntity<Pedido> getById(@PathVariable Long id){
+        return repository.findById(id)
+                .map(resp -> ResponseEntity.ok(resp))
+                .orElse(ResponseEntity.notFound().build());
+    }
+    
+	@PostMapping
+	public ResponseEntity<Pedido> post(@RequestBody Pedido pedido){
+        Long id;
+	    Iterator it = pedido.getProds().iterator();
+        for (; it.hasNext();) {
+            id = (Long) it.next();
+            pedido.getProdutos().add(repositoryProd.findById(id).get());
+        }
+
+		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(pedido));
+	}
+
+	@PutMapping
+	public ResponseEntity<Pedido> put(@RequestBody Pedido pedido){
+        Long id;
+	    Iterator it = pedido.getProds().iterator();
+        for (; it.hasNext();) {
+            id = (Long) it.next();
+            pedido.getProdutos().add(repositoryProd.findById(id).get());
+        }
+
+		return ResponseEntity.status(HttpStatus.OK).body(repository.save(pedido));
+	}
+   
 }
