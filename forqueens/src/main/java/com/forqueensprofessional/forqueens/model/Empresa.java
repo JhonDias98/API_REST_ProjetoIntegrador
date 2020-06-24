@@ -22,6 +22,7 @@ public class Empresa {
 	private long cnpj;
 	
 	@NotNull
+	@Column(unique = true)
 	@Size(min = 7, max = 80)
 	private String email;
 	
@@ -36,7 +37,7 @@ public class Empresa {
 	@NotNull
 	private long inscricaoEstadual;
 	
-	@Size(min = 10, max = 11)
+	@Size(min = 10, max = 16)
 	private String telefoneComercial;
 
 	@NotNull

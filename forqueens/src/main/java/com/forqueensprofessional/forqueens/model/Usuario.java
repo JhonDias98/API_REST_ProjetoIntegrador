@@ -25,8 +25,10 @@ public class Usuario {
 	
 	
 	@Column(unique = true)
+	@NotNull
 	private long cpf;
 	
+	@Column(unique = true)
 	@NotNull
 	@Size(min = 5, max = 100)
 	private String usuario;
@@ -38,7 +40,7 @@ public class Usuario {
 	@Size(min = 10, max = 12)
 	private String celular;
 	
-	
+	@NotNull
 	private String dataNascimento;
 	
 	@NotNull

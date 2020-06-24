@@ -44,7 +44,7 @@ public class ContatoController {
 		}
 		
 		@PostMapping
-		public ResponseEntity<Contato> post(@RequestBody Contato contato){
+		public ResponseEntity<Contato> postContato(@RequestBody Contato contato){
 			return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(contato));
 		}
 		
