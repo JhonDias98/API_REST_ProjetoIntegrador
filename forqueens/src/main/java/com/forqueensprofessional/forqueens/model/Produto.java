@@ -32,10 +32,7 @@ public class Produto {
 	private String descricao;
 	
 	@NotNull
-	private int valor;
-	
-	@NotNull
-	private int qtdEstoque;
+	private double valor;
 	
 	@ManyToOne
 	@JsonIgnoreProperties("produto")
@@ -74,20 +71,12 @@ public class Produto {
 		this.descricao = descricao;
 	}
 
-	public int getValor() {
+	public double getValor() {
 		return valor;
 	}
 
-	public void setValor(int valor) {
+	public void setValor(double valor) {
 		this.valor = valor;
-	}
-
-	public int getQtdEstoque() {
-		return qtdEstoque;
-	}
-
-	public void setQtdEstoque(int qtdEstoque) {
-		this.qtdEstoque = qtdEstoque;
 	}
 
 	public Categoria getCategoria() {

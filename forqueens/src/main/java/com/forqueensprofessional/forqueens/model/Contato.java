@@ -25,7 +25,7 @@ public class Contato {
 	private String email;
 	
 	@NotNull
-	@Size(min = 10, max = 15)
+	@Size(min = 10, max = 16)
 	private String telefone;
 	
 	@NotNull

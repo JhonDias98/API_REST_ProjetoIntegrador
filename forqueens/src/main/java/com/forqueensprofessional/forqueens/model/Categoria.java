@@ -18,7 +18,7 @@ public class Categoria {
 	private long codigoCategoria;
 	
 	@NotNull
-	@Size(min = 2, max = 15)
+	@Size(min = 2, max = 30)
 	private String descricao;
 	
 

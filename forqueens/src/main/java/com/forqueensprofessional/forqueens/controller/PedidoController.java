@@ -3,6 +3,9 @@ package com.forqueensprofessional.forqueens.controller;
 import com.forqueensprofessional.forqueens.model.Pedido;
 import com.forqueensprofessional.forqueens.repository.PedidoRepository;
 import com.forqueensprofessional.forqueens.repository.ProdutoRepository;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,9 +22,14 @@ public class PedidoController {
     @Autowired
     private ProdutoRepository repositoryProd;
     
-    @GetMapping("/{id}")
-    public ResponseEntity<Pedido> getById(@PathVariable Long id) {
-        return repository.findById(id)
+    @GetMapping
+	public ResponseEntity<List<Pedido>> GetAll(){
+		return ResponseEntity.ok(repository.findAll());
+	}
+    
+    @GetMapping("/{codigoPedido}")
+    public ResponseEntity<Pedido> getById(@PathVariable("codigoPedido") Long codigoPedido) {
+        return repository.findById(codigoPedido)
                 .map(resp -> ResponseEntity.ok(resp))
                 .orElse(ResponseEntity.notFound().build());
     }
