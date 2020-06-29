@@ -10,6 +10,6 @@ import com.forqueensprofessional.forqueens.model.Categoria;
 @Repository
 public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
 
-	public List<Categoria> findAllByDescricaoContainingIgnoreCase (String descricao);
+	public List<Categoria> findAllBydescricaoContainingIgnoreCase (String descricao);
 	
 }
