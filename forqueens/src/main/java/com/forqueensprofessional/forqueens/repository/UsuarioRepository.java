@@ -1,7 +1,6 @@
 package com.forqueensprofessional.forqueens.repository;
 
 import java.util.Optional;
-
 import com.forqueensprofessional.forqueens.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 

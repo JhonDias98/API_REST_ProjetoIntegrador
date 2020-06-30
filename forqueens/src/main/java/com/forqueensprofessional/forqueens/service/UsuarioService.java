@@ -2,7 +2,6 @@ package com.forqueensprofessional.forqueens.service;
 
 import java.nio.charset.Charset;
 import java.util.Optional;
-
 import org.apache.commons.codec.binary.Base64;
 import com.forqueensprofessional.forqueens.model.UserLogin;
 import com.forqueensprofessional.forqueens.model.Usuario;
@@ -26,25 +25,34 @@ public class UsuarioService {
 		return repository.save(usuario);
 	}
 	
-	public Optional<UserLogin> Logar(Optional<UserLogin> user){
+	public Optional<UserLogin> Logar(UserLogin userLogin){
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		Optional<Usuario> usuario = repository.findByUsuario(user.get().getUsuario());
 		
-		if(usuario.isPresent()) {
-			if(encoder.matches(user.get().getSenha(), usuario.get().getSenha())) {
-				String auth = user.get().getUsuario() + ":" + user.get().getSenha();
-				byte[] encodedAuth = Base64.encodeBase64(auth.getBytes(Charset.forName("US-ASCII")));
-				String authHeader = "Basic " + new String(encodedAuth);
-				
-				
-				user.get().setToken(authHeader);
-
-				user.get().setNome(usuario.get().getNome());
-				
-				return user;
-			}
+		Optional<Usuario> usuario = repository.findByUsuario(userLogin.getUsuario());
+		
+		if(usuario.isPresent() == false) {
+			return Optional.empty();
 		}
-		return null;
+			
+		if(encoder.matches(userLogin.getSenha(), usuario.get().getSenha()) == false) {
+			return Optional.empty();
+		}
+		
+		String auth = userLogin.getUsuario() + ":" + userLogin.getSenha();
+		byte[] encodedAuth = Base64.encodeBase64(auth.getBytes(Charset.forName("US-ASCII")));
+		String authHeader = "Basic " + new String(encodedAuth);
+				
+		UserLogin userLogado = new UserLogin();
+		
+		userLogado.setId(usuario.get().getId());
+		userLogado.setCpf(usuario.get().getCpf());
+		userLogado.setUsuario(usuario.get().getUsuario());
+		userLogado.setNome(usuario.get().getNome());
+		userLogado.setCelular(usuario.get().getCelular());
+		userLogado.setDataNascimento(usuario.get().getDataNascimento());
+		userLogado.setSenha(usuario.get().getSenha());
+		userLogado.setToken(authHeader);
+				
+		return Optional.ofNullable(userLogado);
 	}
-	
 }

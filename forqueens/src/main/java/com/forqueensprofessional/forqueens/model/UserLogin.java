@@ -2,13 +2,45 @@ package com.forqueensprofessional.forqueens.model;
 
 public class UserLogin {
 
-		private String nome;
+		private long id;
+		
+		private long cpf;
 		
 		private String usuario;
+		
+		private String nome;
+		
+		private String celular;
+		
+		private String dataNascimento;
 		
 		private String senha;
 		
 		private String token;
+
+		public long getId() {
+			return id;
+		}
+
+		public void setId(long id) {
+			this.id = id;
+		}
+
+		public long getCpf() {
+			return cpf;
+		}
+
+		public void setCpf(long cpf) {
+			this.cpf = cpf;
+		}
+
+		public String getUsuario() {
+			return usuario;
+		}
+
+		public void setUsuario(String usuario) {
+			this.usuario = usuario;
+		}
 
 		public String getNome() {
 			return nome;
@@ -18,12 +50,20 @@ public class UserLogin {
 			this.nome = nome;
 		}
 
-		public String getUsuario() {
-			return usuario;
+		public String getCelular() {
+			return celular;
 		}
 
-		public void setUsuario(String usuario) {
-			this.usuario = usuario;
+		public void setCelular(String celular) {
+			this.celular = celular;
+		}
+
+		public String getDataNascimento() {
+			return dataNascimento;
+		}
+
+		public void setDataNascimento(String dataNascimento) {
+			this.dataNascimento = dataNascimento;
 		}
 
 		public String getSenha() {
@@ -41,5 +81,4 @@ public class UserLogin {
 		public void setToken(String token) {
 			this.token = token;
 		}
-		
 }

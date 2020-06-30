@@ -1,7 +1,6 @@
 package com.forqueensprofessional.forqueens.controller;
 
 import java.util.List;
-import java.util.Optional;
 import com.forqueensprofessional.forqueens.model.UserLogin;
 import com.forqueensprofessional.forqueens.model.Usuario;
 import com.forqueensprofessional.forqueens.repository.UsuarioRepository;
@@ -34,8 +33,9 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("/logar")
-	public ResponseEntity<UserLogin> Autentication(@RequestBody Optional<UserLogin> user) {
-		return usuarioService.Logar(user).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
+	public ResponseEntity<UserLogin> Autentication(@RequestBody UserLogin user) {
+		return usuarioService.Logar(user).map(resp -> ResponseEntity.ok(resp))
+				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
 	}
 	
 	@PostMapping("/cadastrar")
