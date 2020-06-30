@@ -1,13 +1,9 @@
 package com.forqueensprofessional.forqueens.repository;
 
-import java.util.List;
-
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
 import com.forqueensprofessional.forqueens.model.Empresa;
 
-@Repository
 public interface EmpresaRepository extends JpaRepository<Empresa, Long>{
-	public List<Empresa>findAllBynomeComercialContainingIgnoreCase(String nomeComercial);
+	public Optional<Empresa> findByEmail(String email);
 }
