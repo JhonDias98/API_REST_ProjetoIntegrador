@@ -43,10 +43,6 @@ public class Pedido {
 	@JoinColumn(foreignKey = @ForeignKey(name = "cliente_fk"))
 	private Usuario usuario;
 	
-	@ManyToOne
-	@JoinColumn(foreignKey = @ForeignKey(name = "empresa_fk"))
-	private Empresa empresa;
-	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinColumn(foreignKey = @ForeignKey(name = "produto_fk"))
 	private List<Produto> produtos = new ArrayList<Produto>();
@@ -101,15 +97,7 @@ public class Pedido {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
-	public Empresa getEmpresa() {
-		return empresa;
-	}
-
-	public void setEmpresa(Empresa empresa) {
-		this.empresa = empresa;
-	}
-
+	
 	public List<Produto> getProdutos() {
 		return produtos;
 	}

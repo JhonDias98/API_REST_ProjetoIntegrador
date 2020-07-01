@@ -40,10 +40,6 @@ public class Endereco {
 	
 	@ManyToOne
 	@JsonIgnoreProperties("endereco")
-	private Empresa empresa;
-	
-	@ManyToOne
-	@JsonIgnoreProperties("endereco")
 	private Usuario usuario;
 
 	public long getCodigoEndereco() {
@@ -108,14 +104,6 @@ public class Endereco {
 
 	public void setCep(int cep) {
 		this.cep = cep;
-	}
-
-	public Empresa getEmpresa() {
-		return empresa;
-	}
-
-	public void setEmpresa(Empresa empresa) {
-		this.empresa = empresa;
 	}
 
 	public Usuario getUsuario() {
