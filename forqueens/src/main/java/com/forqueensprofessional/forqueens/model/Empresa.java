@@ -36,7 +36,7 @@ public class Empresa {
 	private String razaoSocial;
 	
 	@NotNull
-	@Size(min = 5, max = 80)
+	@Size(min = 5, max = 90)
 	private String nomeComercial;
 	
 	@NotNull
@@ -52,10 +52,6 @@ public class Empresa {
 	@NotNull
 	@Size(min = 6, max = 30)
 	private String senha;
-	
-	@OneToMany(mappedBy = "empresa",cascade=CascadeType.ALL)
-	@JsonIgnoreProperties("empresa")
-	private List<Endereco> endereco;
 
 	
 	public long getId() {
@@ -129,14 +125,5 @@ public class Empresa {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
-	public List<Endereco> getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(List<Endereco> endereco) {
-		this.endereco = endereco;
-	}
-	
 	
 }

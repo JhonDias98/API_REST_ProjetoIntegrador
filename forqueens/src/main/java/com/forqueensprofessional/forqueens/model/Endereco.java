@@ -4,11 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "Endereco")
@@ -31,20 +29,13 @@ public class Endereco {
 	private String rua;
 	
 	@NotNull
-	private int numero;
+	private String numero;
 	
 	private String complemento; 
 	
 	@NotNull
-	private int cep;
+	private String cep;
 	
-	@ManyToOne
-	@JsonIgnoreProperties("endereco")
-	private Empresa empresa;
-	
-	@ManyToOne
-	@JsonIgnoreProperties("endereco")
-	private Usuario usuario;
 
 	public long getCodigoEndereco() {
 		return codigoEndereco;
@@ -86,11 +77,11 @@ public class Endereco {
 		this.rua = rua;
 	}
 
-	public int getNumero() {
+	public String getNumero() {
 		return numero;
 	}
 
-	public void setNumero(int numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 
@@ -102,30 +93,12 @@ public class Endereco {
 		this.complemento = complemento;
 	}
 
-	public int getCep() {
+	public String getCep() {
 		return cep;
 	}
 
-	public void setCep(int cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 
-	public Empresa getEmpresa() {
-		return empresa;
-	}
-
-	public void setEmpresa(Empresa empresa) {
-		this.empresa = empresa;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-	
-	
-	
 }
