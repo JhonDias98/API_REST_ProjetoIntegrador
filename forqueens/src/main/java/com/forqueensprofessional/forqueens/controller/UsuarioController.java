@@ -45,6 +45,16 @@ public class UsuarioController {
 	
 	@PutMapping
 	public ResponseEntity<Usuario> put(@RequestBody Usuario usuario){
-		return ResponseEntity.status(HttpStatus.OK).body(usuarioRepository.save(usuario));
+		Usuario user = new Usuario();
+		user.setId(usuario.getId());
+		user.setCpf(usuario.getCpf());
+		user.setUsuario(usuario.getUsuario());
+		user.setNome(usuario.getNome());
+		user.setCelular(usuario.getCelular());
+		user.setDataNascimento(usuario.getDataNascimento());
+		user.setSenha(usuario.getSenha());
+		user.setEndereco(usuario.getEndereco());
+		
+		return ResponseEntity.status(HttpStatus.OK).body(usuarioService.AtualizarUsuario(user));
 	}
 }

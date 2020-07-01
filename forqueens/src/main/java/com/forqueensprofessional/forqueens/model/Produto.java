@@ -32,6 +32,10 @@ public class Produto {
 	private String descricao;
 	
 	@NotNull
+	@Size(min = 5, max = 10)
+	private String quantidade;
+	
+	@NotNull
 	private double valor;
 	
 	@ManyToOne
@@ -69,6 +73,14 @@ public class Produto {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public String getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(String quantidade) {
+		this.quantidade = quantidade;
 	}
 
 	public double getValor() {

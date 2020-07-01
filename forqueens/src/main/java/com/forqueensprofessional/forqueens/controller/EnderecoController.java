@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.forqueensprofessional.forqueens.model.Endereco;
 import com.forqueensprofessional.forqueens.repository.EnderecoRepository;
+import com.forqueensprofessional.forqueens.service.EnderecoService;
 
 
 	@RestController
@@ -25,6 +26,9 @@ import com.forqueensprofessional.forqueens.repository.EnderecoRepository;
 	public class EnderecoController {
 			@Autowired
 			private EnderecoRepository repository;
+			
+			@Autowired
+			private EnderecoService enderecoService;
 			
 			@GetMapping
 			public ResponseEntity<List<Endereco>> GetAll(){
@@ -43,9 +47,20 @@ import com.forqueensprofessional.forqueens.repository.EnderecoRepository;
 				return ResponseEntity.ok(repository.findAllByCep(cep));
 			}
 			
+			@GetMapping("/meus/{idUsuario}")
+			public ResponseEntity<List<Endereco>> getEndUser(@PathVariable Long idUsuario) {
+				return ResponseEntity.status(HttpStatus.OK).body(enderecoService.meusEnderecos(idUsuario));
+			}
+			
+			
 			@PostMapping
 			public ResponseEntity<Endereco> post(@RequestBody Endereco endereco){
 				return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(endereco));
+			}
+			
+			@PostMapping("/{idUsuario}")
+			public ResponseEntity<List<Endereco>> postEndUser(@RequestBody Endereco endereco, @PathVariable Long idUsuario){
+				return ResponseEntity.status(HttpStatus.CREATED).body(enderecoService.salvar(endereco,idUsuario));
 			}
 			
 			@PutMapping
