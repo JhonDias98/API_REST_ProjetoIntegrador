@@ -31,8 +31,7 @@ public class Produto {
 	@Size(min = 5, max = 500)
 	private String descricao;
 	
-	@NotNull
-	@Size(min = 5, max = 10)
+	@Size(min = 2, max = 10)
 	private String quantidade;
 	
 	@NotNull
